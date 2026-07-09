@@ -148,23 +148,47 @@
             transition: width 12s linear;
         }
 
-        /* Karta ýerine Cyberpunk Surat Seksiýasy */
+        /* Karta ýerine CSS bilen ýasalan Cyberpunk Grid we Ýazgy Seksiýasy */
         .map-section {
             display: none;
             width: 100%;
-            height: 320px;
+            height: 300px;
             margin-top: 15px;
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--gold);
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            /* Internet talap etmeýän, CSS haker fony */
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        linear-gradient(90deg, rgba(212,175,55,0.1) 1px, transparent 1px),
+                        linear-gradient(rgba(212,175,55,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
         }
 
-        .map-section img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: hue-rotate(15deg) brightness(0.8) contrast(1.2); /* Surat has haker stilinde görüner ýaly */
+        .cyber-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            width: 90%;
+        }
+
+        .cyber-logo h2 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px var(--gold);
+        }
+
+        .cyber-logo p {
+            color: #888;
+            font-size: 13px;
+            margin-top: 10px;
+            letter-spacing: 1px;
         }
 
         /* Footer goralan barada ýazgy */
@@ -206,7 +230,14 @@
         </div>
 
         <div id="mapSection" class="map-section">
-            <img src="https://images.unsplash.com/photo-1629814421109-f599723ec0fe?q=80&w=800&auto=format&fit=crop" alt="Izmir Cyberpunk">
+            <div class="cyber-logo">
+                <h2>İZMİR 35</h2>
+                <p>[ ACCESS GRANTED - SYSTEM SECURED ]</p>
+                <div style="font-size: 11px; color: var(--gold); margin-top: 15px; font-family: monospace; opacity: 0.7;">
+                    LAT: 38.4192° | LON: 27.1287° <br>
+                    TARGET_CITY: IZMIR_TR
+                </div>
+            </div>
         </div>
 
         <div class="footer-note">
@@ -270,16 +301,16 @@
                 scrambledText.innerText = "BYPASS_KEY: " + textResult;
             }, 80);
 
-            // 12 sekuntdan soň suraty açýar
+            // 12 sekuntdan soň haker panelini açýar
             setTimeout(() => {
                 clearInterval(intervalId);
                 document.getElementById('loadingSection').style.display = 'none';
                 document.getElementById('mapSection').style.display = 'block';
                 
-                document.getElementById('mainContainer').style.maxWidth = '600px';
+                document.getElementById('mainContainer').style.maxWidth = '500px';
                 
                 if(document.querySelector('.container h1')) {
-                    document.querySelector('.container h1').innerText = "İZMİR, TÜRKİÝE (HACKED)";
+                    document.querySelector('.container h1').innerText = "İZMİR CONNECTED";
                 }
             }, 12000); 
         }
