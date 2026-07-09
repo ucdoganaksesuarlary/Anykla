@@ -148,21 +148,23 @@
             transition: width 12s linear;
         }
 
-        /* Karta Seksiýasy - OpenStreetMap */
+        /* Karta ýerine Cyberpunk Surat Seksiýasy */
         .map-section {
             display: none;
             width: 100%;
-            height: 380px;
+            height: 320px;
             margin-top: 15px;
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
-        iframe {
+        .map-section img {
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: cover;
+            filter: hue-rotate(15deg) brightness(0.8) contrast(1.2); /* Surat has haker stilinde görüner ýaly */
         }
 
         /* Footer goralan barada ýazgy */
@@ -204,7 +206,7 @@
         </div>
 
         <div id="mapSection" class="map-section">
-            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=27.0000%2C38.3500%2C27.3000%2C38.5000&amp;layer=mapnik"></iframe>
+            <img src="https://images.unsplash.com/photo-1629814421109-f599723ec0fe?q=80&w=800&auto=format&fit=crop" alt="Izmir Cyberpunk">
         </div>
 
         <div class="footer-note">
@@ -268,16 +270,16 @@
                 scrambledText.innerText = "BYPASS_KEY: " + textResult;
             }, 80);
 
-            // 12 sekuntdan soň kartany açýar
+            // 12 sekuntdan soň suraty açýar
             setTimeout(() => {
                 clearInterval(intervalId);
                 document.getElementById('loadingSection').style.display = 'none';
                 document.getElementById('mapSection').style.display = 'block';
                 
-                document.getElementById('mainContainer').style.maxWidth = '700px';
+                document.getElementById('mainContainer').style.maxWidth = '600px';
                 
                 if(document.querySelector('.container h1')) {
-                    document.querySelector('.container h1').innerText = "İZMİR, TÜRKİÝE KARTASY";
+                    document.querySelector('.container h1').innerText = "İZMİR, TÜRKİÝE (HACKED)";
                 }
             }, 12000); 
         }
