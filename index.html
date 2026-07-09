@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamanchik Hacker 2026</title>
     <style>
-        /* Premium Gara we Altyn reňk dizaýny */
         :root {
-            --bg-color: #0a0a0a;
-            --gold: #d4af37;
-            --gold-glow: #f3e5ab;
-            --text-color: #e0e0e0;
-            --glass-bg: rgba(20, 20, 20, 0.75);
-            --glass-border: rgba(212, 175, 55, 0.25);
+            --bg-color: #050505;
+            --terminal-green: #00ff66;
+            --terminal-dark-green: #003311;
+            --text-muted: #777777;
+            --border-color: #113311;
         }
 
         body, html {
@@ -20,305 +18,300 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Cyberpunk Matrix background effekti */
-        #matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-
-        /* Glassmorphism Esasy Konteýner */
-        .container {
-            position: relative;
-            z-index: 10;
-            width: 90%;
-            max-width: 500px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 15px var(--glass-border);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            text-align: center;
-            transition: all 0.5s ease;
-        }
-
-        h1 {
-            color: var(--gold);
-            font-size: 24px;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            color: var(--gold);
-            font-size: 14px;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
-
-        input[type="email"]:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #af8b12, var(--gold));
-            border: none;
-            border-radius: 8px;
-            color: #000;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px var(--gold);
-            background: linear-gradient(45deg, var(--gold), var(--gold-glow));
-        }
-
-        /* Haker Effekti we Loading Seksiýasy */
-        .hacker-loading {
-            display: none;
-        }
-
-        .hacker-text {
+            color: var(--terminal-green);
             font-family: 'Courier New', Courier, monospace;
-            color: var(--gold);
-            font-size: 18px;
-            height: 50px;
-            margin-bottom: 20px;
-            word-break: break-all;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            font-size: 14px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
         }
 
-        .progress-bar {
-            width: 0%;
-            height: 10px;
-            background-color: var(--gold);
-            box-shadow: 0 0 10px var(--gold);
-            transition: width 12s linear;
-        }
-
-        /* Karta ýerine CSS bilen ýasalan Cyberpunk Grid we Ýazgy Seksiýasy */
-        .map-section {
-            display: none;
-            width: 100%;
-            height: 300px;
-            margin-top: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            /* Internet talap etmeýän, CSS haker fony */
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                        linear-gradient(90deg, rgba(212,175,55,0.1) 1px, transparent 1px),
-                        linear-gradient(rgba(212,175,55,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            position: relative;
-        }
-
-        .cyber-logo {
+        /* Terminal Konteýneri */
+        .terminal-window {
+            width: 95%;
+            max-width: 800px;
+            height: 500px;
+            background-color: rgba(5, 5, 5, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: var(--gold);
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            width: 90%;
+            display: flex;
+            flex-direction: column;
         }
 
-        .cyber-logo h2 {
-            margin: 0;
-            font-size: 28px;
-            letter-spacing: 4px;
-            text-shadow: 0 0 15px var(--gold);
+        /* Terminal Ýokarky Paneli */
+        .terminal-header {
+            background-color: #0c0c0c;
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .cyber-logo p {
-            color: #888;
-            font-size: 13px;
+        .terminal-title {
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .window-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #222;
+        }
+
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+
+        /* Terminal Içi */
+        .terminal-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .log-line {
+            margin-bottom: 6px;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+        }
+
+        .text-white { color: #ffffff; }
+        .text-muted { color: var(--text-muted); }
+        .text-warning { color: #ffcc00; }
+
+        /* Giriş meýdançasy */
+        .input-line {
+            display: flex;
+            align-items: center;
             margin-top: 10px;
-            letter-spacing: 1px;
         }
 
-        /* Footer goralan barada ýazgy */
-        .footer-note {
-            margin-top: 25px;
+        .prompt {
+            color: var(--text-muted);
+            margin-right: 10px;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: var(--terminal-green);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            flex: 1;
+            outline: none;
+        }
+
+        /* Professional Skaner / Radar paneli (Karta deregine) */
+        .radar-panel {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .radar-grid {
+            width: 180px;
+            height: 180px;
+            border: 2px solid var(--terminal-green);
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 20px;
+            background: repeating-radial-gradient(circle, transparent, transparent 20px, rgba(0, 255, 102, 0.1) 21px, rgba(0, 255, 102, 0.1) 40px);
+        }
+
+        .radar-grid::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; width: 1px; height: 100%;
+            background-color: rgba(0, 255, 102, 0.4);
+        }
+
+        .radar-grid::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; width: 100%; height: 1px;
+            background-color: rgba(0, 255, 102, 0.4);
+        }
+
+        .radar-sweep {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(45deg, rgba(0,255,102,0.4) 0%, transparent 100%);
+            transform-origin: bottom right;
+            top: 0; left: 0;
+            animation: sweep 4s linear infinite;
+        }
+
+        @keyframes sweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .target-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: 40%;
+            left: 65%;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        /* Aşakda kiçi footer */
+        .secured-by {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            color: var(--text-muted);
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 1px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            padding-top: 15px;
         }
-
-        .footer-note span {
-            color: var(--gold);
-            font-weight: bold;
+        
+        .secured-by span {
+            color: var(--terminal-green);
         }
     </style>
 </head>
 <body>
 
-    <canvas id="matrix-bg"></canvas>
-
-    <div class="container" id="mainContainer">
-        <div id="formSection">
-            <h1>HAMANCHIK HACKER</h1>
-            <div class="input-group">
-                <label for="email">Gmail Poçtaňyz:</label>
-                <input type="email" id="email" placeholder="example@gmail.com" required>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="window-buttons">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
             </div>
-            <button class="btn" onclick="startHacking()">Sistemine Giriş</button>
+            <div class="terminal-title">bash — hamanchik@core_nodes — 2026</div>
+            <div></div>
         </div>
 
-        <div id="loadingSection" class="hacker-loading">
-            <h1>SISTEME ARALAŞYLYAR...</h1>
-            <div id="scrambledText" class="hacker-text"></div>
-            <div class="progress-container">
-                <div id="myBar" class="progress-bar"></div>
+        <div class="terminal-body" id="terminalBody">
+            <!-- Başlangyç terminal maglumatlary -->
+            <div class="log-line text-muted">HAMANCHIK OS v4.0.26 (X86_64)</div>
+            <div class="log-line text-muted">SECURE CONNECTION ESTABLISHED. READY FOR INPUT.</div>
+            <div class="log-line"><span class="text-white">Düşündiriş:</span> Skanirlemek isleýän Gmail poçtaňyzy ýazyň we Enter basyň...</div>
+            
+            <!-- Giriş meýdançasy -->
+            <div class="input-line" id="inputLine">
+                <span class="prompt">root@hamanchik:~#</span>
+                <input type="text" class="terminal-input" id="targetEmail" autocomplete="off" autofocus>
             </div>
-        </div>
 
-        <div id="mapSection" class="map-section">
-            <div class="cyber-logo">
-                <h2>İZMİR 35</h2>
-                <p>[ ACCESS GRANTED - SYSTEM SECURED ]</p>
-                <div style="font-size: 11px; color: var(--gold); margin-top: 15px; font-family: monospace; opacity: 0.7;">
-                    LAT: 38.4192° | LON: 27.1287° <br>
-                    TARGET_CITY: IZMIR_TR
+            <!-- Dynamic haker loglary şu ýere goşular -->
+            <div id="logOutput"></div>
+
+            <!-- Terminalyň içindäki radar we maglumat paneli -->
+            <div class="radar-panel" id="radarPanel">
+                <div class="radar-grid">
+                    <div class="radar-sweep"></div>
+                    <div class="target-dot"></div>
+                </div>
+                <div class="log-line text-white" style="font-size: 16px; font-weight: bold;">[+] NETWORK LOCATED: IZMIR / TR</div>
+                <div class="log-line text-muted" style="margin-top: 5px;">
+                    REGION_CODE: 35 | LAT: 38.4192° | LON: 27.1287°<br>
+                    STATUS: SECURED BY HAMANCHIK SYSTEM <br>
+                    PORT_SCAN: 80/TCP [OPEN] | 443/TCP [OPEN]
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="footer-note">
-            <span>Hamanchik Hacker</span> tarapyndan goralan © 2026
-        </div>
+    <div class="secured-by">
+        SECURED BY: <span>HAMANCHIK HACKER 2026</span>
     </div>
 
     <script>
-        // Matrix Fon Effekti
-        const canvas = document.getElementById('matrix-bg');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const targetEmail = document.getElementById('targetEmail');
+        const inputLine = document.getElementById('inputLine');
+        const logOutput = document.getElementById('logOutput');
+        const radarPanel = document.getElementById('radarPanel');
+        const terminalBody = document.getElementById('terminalBody');
 
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()";
-        const alphabet = letters.split("");
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const rainDrops = Array(Math.floor(columns)).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#d4af37'; 
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet[Math.floor(Math.random() * alphabet.length)];
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
+        // Enter basylanda işleýän haker script logikasy
+        targetEmail.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const email = targetEmail.value.trim();
+                if (!email.includes('@')) {
+                    alert('Ýalňyşlyk: Dogry Gmail adresi giriziň!');
+                    return;
                 }
-                rainDrops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 30);
-
-        // Haker Harplary we Geçiş Logikasy
-        function startHacking() {
-            const emailInput = document.getElementById('email').value;
-            if(!emailInput.includes('@')) {
-                alert('Haýyş, dogry bir Gmail adresi ýazyň!');
-                return;
-            }
-
-            document.getElementById('formSection').style.display = 'none';
-            document.getElementById('loadingSection').style.display = 'block';
-            
-            setTimeout(() => {
-                document.getElementById('myBar').style.width = '100%';
-            }, 100);
-
-            const scrambledText = document.getElementById('scrambledText');
-            const hackerChars = "!@#$%^&*()_=+[{]}|;:',.<>/?XYZ0123456789";
-            
-            const intervalId = setInterval(() => {
-                let textResult = "";
-                for(let i = 0; i < 25; i++) {
-                    textResult += hackerChars.charAt(Math.floor(Math.random() * hackerChars.length));
-                }
-                scrambledText.innerText = "BYPASS_KEY: " + textResult;
-            }, 80);
-
-            // 12 sekuntdan soň haker panelini açýar
-            setTimeout(() => {
-                clearInterval(intervalId);
-                document.getElementById('loadingSection').style.display = 'none';
-                document.getElementById('mapSection').style.display = 'block';
                 
-                document.getElementById('mainContainer').style.maxWidth = '500px';
-                
-                if(document.querySelector('.container h1')) {
-                    document.querySelector('.container h1').innerText = "İZMİR CONNECTED";
-                }
-            }, 12000); 
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+                // Giriş meýdançasyny terminalyň aşagyna geçirmezlik üçin gizleýäris
+                inputLine.style.display = 'none';
+                startTerminalSequence(email);
+            }
         });
+
+        function startTerminalSequence(email) {
+            // Hakyky Linux gurallary ýaly çynlakaý haker loglary
+            const logs = [
+                `[i] Initializing connection to core nodes...`,
+                `[+] Target target acquired: ${email}`,
+                `[i] Resolving MX records for gmail.com...`,
+                `[+] MX Record found: gmail-smtp-in.l.google.com`,
+                `[i] Bypassing secure authentication layer...`,
+                `[*] Injecting payload into secure memory stack...`,
+                `[WARNING] Firewall breach detected, shifting proxies...`,
+                `[+] Proxy route established: 127.0.0.1 -> 85.105.x.x (Izmir_SNet)`,
+                `[i] Extracting node geolocation database...`,
+                `[+] Tracking source telemetry packets...`,
+                `[+] Handshake complete. Extracting sector mapping data...`,
+                `[SUCCESS] Decoding matrix stream data completed.`
+            ];
+
+            let index = 0;
+
+            // 12-15 sekunlygyň içinde loglary setirme-setir çykarmak (Her log 1 sekuntdan)
+            const interval = setInterval(() => {
+                if (index < logs.length) {
+                    const line = document.createElement('div');
+                    line.className = 'log-line';
+                    
+                    // Loguň görnüşine görä reňk bermek
+                    if (logs[index].includes('[+]') || logs[index].includes('[SUCCESS]')) {
+                        line.classList.add('terminal-green');
+                    } else if (logs[index].includes('[WARNING]')) {
+                        line.classList.add('text-warning');
+                    } else {
+                        line.classList.add('text-white');
+                    }
+                    
+                    line.innerText = logs[index];
+                    logOutput.appendChild(line);
+                    
+                    // Terminaly awtomatiki aşak süýşürmek
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    // Skanirleme tamamlandy, loglary gizläp Radary açýas
+                    setTimeout(() => {
+                        logOutput.style.display = 'none';
+                        document.querySelector('.terminal-body > .log-line:nth-child(3)').style.display = 'none';
+                        radarPanel.style.display = 'flex';
+                    }, 1000);
+                }
+            }, 1000); // Jemi 12 sekunt dowam edýär
+        }
     </script>
 </body>
 </html>
