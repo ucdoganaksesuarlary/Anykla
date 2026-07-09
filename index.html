@@ -29,7 +29,7 @@
             overflow: hidden;
         }
 
-        /* Cyberpunk Matrix background effekti üçin */
+        /* Cyberpunk Matrix background effekti */
         #matrix-bg {
             position: fixed;
             top: 0;
@@ -145,7 +145,7 @@
             height: 10px;
             background-color: var(--gold);
             box-shadow: 0 0 10px var(--gold);
-            transition: width 12s linear; /* 12 sekunt dowam edýär */
+            transition: width 12s linear;
         }
 
         /* Karta Seksiýasy */
@@ -204,11 +204,11 @@
         </div>
 
         <div id="mapSection" class="map-section">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195267.33946257367!2d27.005183868128527!3d38.41785593883084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd8e3599e821d%3A0xa177da201ee824c9!2zxLB6bWlyLCBUw7xya2l5ZQ!5e0!3m2!1stk!2s!4v1710000000000!6m8!1m7!1s" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199995.3473138383!2d26.937748894178553!3d38.41473309623838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd862a762ae63%3A0x2306584d999440e!2zxLB6bWly!5e0!3m2!1stk!2str!4v1720545200000!5m2!1stk!2str" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
         <div class="footer-note">
-            <span>Hamanchik Hacker</span> tarapyndan goralan &copy; 2026
+            <span>Hamanchik Hacker</span> tarapyndan goralan © 2026
         </div>
     </div>
 
@@ -228,7 +228,7 @@
         function drawMatrix() {
             ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#d4af37'; // Altyn reňkli haker kodlary
+            ctx.fillStyle = '#d4af37'; 
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < rainDrops.length; i++) {
@@ -250,16 +250,13 @@
                 return;
             }
 
-            // Formany gizle, loadingi aç
             document.getElementById('formSection').style.display = 'none';
             document.getElementById('loadingSection').style.display = 'block';
             
-            // Progress bar başladýar (12 sekunt dowam edýär)
             setTimeout(() => {
                 document.getElementById('myBar').style.width = '100%';
             }, 100);
 
-            // Üýtgeşik haker harplaryny döredýän effekt
             const scrambledText = document.getElementById('scrambledText');
             const hackerChars = "!@#$%^&*()_=+[{]}|;:',.<>/?XYZ0123456789";
             
@@ -271,22 +268,18 @@
                 scrambledText.innerText = "BYPASS_KEY: " + textResult;
             }, 80);
 
-            // 12 sekuntdan soň kartany görkez
+            // 12 sekuntdan soň kartany açýar
             setTimeout(() => {
                 clearInterval(intervalId);
                 document.getElementById('loadingSection').style.display = 'none';
                 document.getElementById('mapSection').style.display = 'block';
                 
-                // Konteýneri karta laýyk edip ulaltmak
                 document.getElementById('mainContainer').style.maxWidth = '700px';
-                document.querySelector('h1').innerText = "İZMİR, TÜRKİÝE KARTASY";
-                // Eger öňki h1 form içindäki bolsa, başlygy täzeden goşýas
-                if(!document.querySelector('.container h1')) {
-                    const newH1 = document.createElement('h1');
-                    newH1.innerText = "İZMİR, TÜRKİÝE KARTASY";
-                    document.getElementById('mainContainer').prepend(newH1);
+                
+                if(document.querySelector('.container h1')) {
+                    document.querySelector('.container h1').innerText = "İZMİR, TÜRKİÝE KARTASY";
                 }
-            }, 12000); // 12000ms = 12 sekunt
+            }, 12000); 
         }
 
         window.addEventListener('resize', () => {
@@ -296,4 +289,3 @@
     </script>
 </body>
 </html>
-
