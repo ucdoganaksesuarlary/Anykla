@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamanchik Hacker 2026</title>
+    <style>
+        /* Premium Gara we Altyn reňk dizaýny */
+        :root {
+            --bg-color: #0a0a0a;
+            --gold: #d4af37;
+            --gold-glow: #f3e5ab;
+            --text-color: #e0e0e0;
+            --glass-bg: rgba(20, 20, 20, 0.75);
+            --glass-border: rgba(212, 175, 55, 0.25);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Cyberpunk Matrix background effekti üçin */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Esasy Konteýner */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 15px var(--glass-border);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            color: var(--gold);
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            color: var(--gold);
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #af8b12, var(--gold));
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--gold);
+            background: linear-gradient(45deg, var(--gold), var(--gold-glow));
+        }
+
+        /* Haker Effekti we Loading Seksiýasy */
+        .hacker-loading {
+            display: none;
+        }
+
+        .hacker-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--gold);
+            font-size: 18px;
+            height: 50px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 10px;
+            background-color: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+            transition: width 12s linear; /* 12 sekunt dowam edýär */
+        }
+
+        /* Karta Seksiýasy */
+        .map-section {
+            display: none;
+            width: 100%;
+            height: 350px;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer goralan barada ýazgy */
+        .footer-note {
+            margin-top: 25px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 15px;
+        }
+
+        .footer-note span {
+            color: var(--gold);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="container" id="mainContainer">
+        <div id="formSection">
+            <h1>HAMANCHIK HACKER</h1>
+            <div class="input-group">
+                <label for="email">Gmail Poçtaňyz:</label>
+                <input type="email" id="email" placeholder="example@gmail.com" required>
+            </div>
+            <button class="btn" onclick="startHacking()">Sistemine Giriş</button>
+        </div>
+
+        <div id="loadingSection" class="hacker-loading">
+            <h1>SISTEME ARALAŞYLYAR...</h1>
+            <div id="scrambledText" class="hacker-text"></div>
+            <div class="progress-container">
+                <div id="myBar" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div id="mapSection" class="map-section">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195267.33946257367!2d27.005183868128527!3d38.41785593883084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd8e3599e821d%3A0xa177da201ee824c9!2zxLB6bWlyLCBUw7xya2l5ZQ!5e0!3m2!1stk!2s!4v1710000000000!6m8!1m7!1s" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div class="footer-note">
+            <span>Hamanchik Hacker</span> tarapyndan goralan &copy; 2026
+        </div>
+    </div>
+
+    <script>
+        // Matrix Fon Effekti
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()";
+        const alphabet = letters.split("");
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const rainDrops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#d4af37'; // Altyn reňkli haker kodlary
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet[Math.floor(Math.random() * alphabet.length)];
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 30);
+
+        // Haker Harplary we Geçiş Logikasy
+        function startHacking() {
+            const emailInput = document.getElementById('email').value;
+            if(!emailInput.includes('@')) {
+                alert('Haýyş, dogry bir Gmail adresi ýazyň!');
+                return;
+            }
+
+            // Formany gizle, loadingi aç
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('loadingSection').style.display = 'block';
+            
+            // Progress bar başladýar (12 sekunt dowam edýär)
+            setTimeout(() => {
+                document.getElementById('myBar').style.width = '100%';
+            }, 100);
+
+            // Üýtgeşik haker harplaryny döredýän effekt
+            const scrambledText = document.getElementById('scrambledText');
+            const hackerChars = "!@#$%^&*()_=+[{]}|;:',.<>/?XYZ0123456789";
+            
+            const intervalId = setInterval(() => {
+                let textResult = "";
+                for(let i = 0; i < 25; i++) {
+                    textResult += hackerChars.charAt(Math.floor(Math.random() * hackerChars.length));
+                }
+                scrambledText.innerText = "BYPASS_KEY: " + textResult;
+            }, 80);
+
+            // 12 sekuntdan soň kartany görkez
+            setTimeout(() => {
+                clearInterval(intervalId);
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('mapSection').style.display = 'block';
+                
+                // Konteýneri karta laýyk edip ulaltmak
+                document.getElementById('mainContainer').style.maxWidth = '700px';
+                document.querySelector('h1').innerText = "İZMİR, TÜRKİÝE KARTASY";
+                // Eger öňki h1 form içindäki bolsa, başlygy täzeden goşýas
+                if(!document.querySelector('.container h1')) {
+                    const newH1 = document.createElement('h1');
+                    newH1.innerText = "İZMİR, TÜRKİÝE KARTASY";
+                    document.getElementById('mainContainer').prepend(newH1);
+                }
+            }, 12000); // 12000ms = 12 sekunt
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
+
